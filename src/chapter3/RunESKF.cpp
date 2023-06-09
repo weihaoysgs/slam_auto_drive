@@ -1,15 +1,19 @@
-#include "ESKF.hpp"
+#include <glog/logging.h>
+
 #include <iostream>
 
-#include <Eigen/Core>
-#include <Eigen/Dense>
-
-#include <sophus/se3.hpp>
+#include "ESKF.hpp"
 
 int main(int argc, char const *argv[])
 {
-  std::cout << "Hello world\n";
-  std::cout << WEIHAO_SOPHUS;
-  Eigen::Vector3d zero = Eigen::Vector3d::Zero();
+  google::InitGoogleLogging(argv[0]);
+  FLAGS_stderrthreshold = google::INFO;
+  FLAGS_colorlogtostderr = true;
+  ESKFD::Options option;
+  ESKFD eskf;
+  Sophus::SO3d so3;
+  std::cout << so3.unit_quaternion().coeffs().transpose() << std::endl;
+  Eigen::Vector3d init_bg, init_ba, g;
+  eskf.SetInitialConditions(option, init_bg, init_ba, g);
   return 0;
 }
