@@ -21,3 +21,12 @@ include_directories(${catkin_INCLUDE_DIRS})
 
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
+
+find_package(Pangolin REQUIRED)
+include_directories(${Pangolin_INCLUDE_DIRS})
+
+set(third_party_libs
+        ${catkin_LIBRARIES}
+        ${Pangolin_LIBRARIES}
+        glog gflags
+)
